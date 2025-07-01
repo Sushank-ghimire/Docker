@@ -77,4 +77,107 @@ docker rmi <image_id>           # Remove an image
 docker image prune              # Remove unused images
 ```
 
-## Containers
+---
+
+## 🧱 Containers
+
+A **Docker container** is a lightweight, isolated environment that runs your applications. Containers are created from **images**, which include everything your app needs (code, dependencies, environment).
+
+---
+
+### 🚀 What Happens Behind the Scenes When You Run a Container?
+
+When you run a command like:
+
+```bash
+docker run ubuntu
+```
+
+Here's what Docker does step by step:
+
+1. **Check for the image** (`ubuntu`) locally.
+2. If the image isn’t found, Docker **downloads it** from Docker Hub.
+3. Docker then **creates a container** from that image.
+4. It **starts** the container and runs the default command (e.g., bash or shell).
+5. The container runs in an **isolated environment** but can interact with your system via mapped ports, volumes, etc.
+
+> 🧠 Think of an image as a _blueprint_ and a container as the _real running instance_ built from it.
+
+---
+
+### 🔧 Common Container Commands
+
+#### ✅ Run a Container Interactively
+
+```bash
+docker run -it ubuntu
+```
+
+- `-i` = interactive mode
+- `-t` = gives you a terminal
+- Drops you into the shell of an Ubuntu container
+
+#### ✅ Run a Container in the Background (Detached Mode)
+
+```bash
+docker run -d nginx
+```
+
+- Runs the Nginx container in the background
+
+#### ✅ Run a Container With Port Mapping
+
+```bash
+docker run -d -p 8080:80 nginx
+```
+
+- Maps port 8080 on your machine to port 80 in the container (access via `localhost:8080`)
+
+#### ✅ Name Your Container
+
+```bash
+docker run -it --name myubuntu ubuntu
+```
+
+- Easier to manage than using container IDs
+
+---
+
+### 📋 View Running and Stopped Containers
+
+```bash
+docker ps            # Shows running containers
+docker ps -a         # Shows all containers (including stopped)
+```
+
+---
+
+### 🔄 Start, Stop, Restart Containers
+
+```bash
+docker stop myubuntu      # Stop the container
+docker start myubuntu     # Start a stopped container
+docker restart myubuntu   # Restart it
+```
+
+---
+
+### 🧹 Remove Containers
+
+```bash
+docker rm myubuntu        # Delete a container (must be stopped first)
+docker rm -f myubuntu     # Force delete even if it's running
+```
+
+---
+
+### 🕵️ Inspect and Logs
+
+```bash
+docker logs myubuntu         # View container output logs
+docker inspect myubuntu      # Get detailed info (IP, config, etc.)
+```
+
+---
+
+> 📦 Containers are temporary by default. When you exit or stop them, they don’t run again unless restarted — unless you use volumes or Docker Compose to persist data.
