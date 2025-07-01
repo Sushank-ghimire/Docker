@@ -4,6 +4,7 @@
 
 - [Why Docker](#why-docker)
 - [Installation](#installation)
+- [Basic Commands](#basic-commands)
 - [Containers](#containers)
 - [Images](#images)
 - [Networks](#networks)
@@ -46,5 +47,34 @@ To set up Docker on your machine, follow these steps:
    ```bash
    docker --version
    ```
+
+## Basic Commands
+
+These are some essential Docker CLI commands to get you started:
+
+---
+
+### 🔄 Docker Version & Info
+
+```bash
+docker --version        # Show installed Docker version
+docker info             # Show system-wide Docker information
+docker help             # Show general help for Docker commands
+```
+
+### 📥 Pulling Images
+
+```bash
+docker pull ubuntu              # Download the latest Ubuntu image
+docker pull nginx:alpine        # Pull a specific version/tag of an image
+```
+
+### 📦 Viewing Images
+
+```bash
+docker images                   # List all downloaded images
+docker rmi <image_id>           # Remove an image
+docker image prune              # Remove unused images
+```
 
 ## Containers
