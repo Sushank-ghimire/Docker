@@ -7,10 +7,10 @@
 - [Basic Commands](#basic-commands)
 - [Containers](#containers)
 - [Images](#images)
+- [Layers](#layers)
 - [Networks](#networks)
 - [Registry and Repository](#registery)
 - [Dockerfile](#dockerfile)
-- [Layers](#layers)
 - [Links](#links)
 - [Volumes](#volumes)
 - [Exposing Ports](#exposing-ports)
@@ -79,7 +79,7 @@ docker image prune              # Remove unused images
 
 ---
 
-## 🧱 Containers
+## Containers
 
 A **Docker container** is a lightweight, isolated environment that runs your applications. Containers are created from **images**, which include everything your app needs (code, dependencies, environment).
 
@@ -113,8 +113,13 @@ Here's what Docker does step by step:
 docker run -it ubuntu
 ```
 
+```bash
+docker run  -d --name ubuntu_container ubuntu #naming the container as ubuntu_container
+```
+
 - `-i` = interactive mode
 - `-t` = gives you a terminal
+- `-d` = detached mode
 - Drops you into the shell of an Ubuntu container
 
 #### ✅ Run a Container in the Background (Detached Mode)
@@ -181,3 +186,30 @@ docker inspect myubuntu      # Get detailed info (IP, config, etc.)
 ---
 
 > 📦 Containers are temporary by default. When you exit or stop them, they don’t run again unless restarted — unless you use volumes or Docker Compose to persist data.
+
+Absolutely! Here's a beginner-friendly and well-structured explanation for both the **Images** and **Layers** sections in your Docker Cheat Sheet (`README.md`):
+
+---
+
+# Images
+
+A **Docker image** is a lightweight, read-only template used to create containers. It includes everything needed to run an application — code, runtime, libraries, environment variables, and config files.
+
+You can think of images like **blueprints** for containers.
+
+---
+
+### 🔧 Common Image Commands
+
+```bash
+docker pull nginx            # Download image from Docker Hub
+docker images                # List all images on your system
+docker rmi nginx             # Remove an image
+docker build -t myapp .      # Build a custom image using a Dockerfile
+docker tag myapp myrepo/myapp:v1  # Tag an image with a repository and version
+docker push myrepo/myapp:v1       # Push image to a remote registry (e.g. Docker Hub)
+```
+
+> 🔹 Images are built in layers and can be reused, making them fast and efficient.
+
+---
