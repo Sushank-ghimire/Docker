@@ -214,7 +214,7 @@ docker push myrepo/myapp:v1       # Push image to a remote registry (e.g. Docker
 
 ---
 
-## 🧱 Layers
+# Layers
 
 Docker images are made up of **layers**. Each layer represents a change (instruction) in the Dockerfile.
 
