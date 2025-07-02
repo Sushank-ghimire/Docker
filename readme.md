@@ -213,3 +213,41 @@ docker push myrepo/myapp:v1       # Push image to a remote registry (e.g. Docker
 > 🔹 Images are built in layers and can be reused, making them fast and efficient.
 
 ---
+
+## 🧱 Layers
+
+Docker images are made up of **layers**. Each layer represents a change (instruction) in the Dockerfile.
+
+For example:
+
+```Dockerfile
+FROM node:18         # Layer 1
+WORKDIR /app         # Layer 2
+COPY . .             # Layer 3
+RUN npm install      # Layer 4
+CMD ["npm", "start"] # Layer 5
+```
+
+### ✅ Why Layers Matter
+
+- **Caching:** Docker caches each layer. If nothing changes in a layer, it reuses the cache to build faster.
+- **Efficiency:** Layers are shared across images, saving space.
+- **Layered FS:** Containers are made by stacking these layers and adding a writable layer on top.
+
+> 📌 Tip: The order of Dockerfile instructions affects caching. Put the most frequently changed instructions (like `COPY . .`) at the bottom.
+
+---
+
+### 📦 View Image Layers
+
+To inspect layers of an image, use:
+
+```bash
+docker history <image_name>
+```
+
+Or for detailed layer info (requires installing Dive):
+
+```bash
+dive <image_name>
+```
