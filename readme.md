@@ -187,8 +187,6 @@ docker inspect myubuntu      # Get detailed info (IP, config, etc.)
 
 > 📦 Containers are temporary by default. When you exit or stop them, they don’t run again unless restarted — unless you use volumes or Docker Compose to persist data.
 
-Absolutely! Here's a beginner-friendly and well-structured explanation for both the **Images** and **Layers** sections in your Docker Cheat Sheet (`README.md`):
-
 ---
 
 # Images
@@ -259,3 +257,95 @@ docker log container_id
 docker exec -it container_id /bin/bash # Only works with the running container
 docker exec -it container_id /bin/sh
 ```
+
+Absolutely! Here's a beginner-friendly, clear, and useful **Networks** section for your Docker Cheat Sheet:
+
+---
+
+## 🌐 Networks
+
+Docker uses networks to allow containers to communicate with each other and with the outside world. By default, Docker creates a few networks for you, but you can create your own for more control.
+
+---
+
+### 🔌 Default Docker Networks
+
+You can view them with:
+
+```bash
+docker network ls
+```
+
+You’ll see:
+
+| NAME   | DRIVER | DESCRIPTION                             |
+| ------ | ------ | --------------------------------------- |
+| bridge | bridge | Default for containers on the same host |
+| host   | host   | Shares host’s networking (Linux only)   |
+| none   | null   | Disables networking                     |
+
+---
+
+### 🛠️ Common Network Commands
+
+#### ✅ Create a Custom Network
+
+```bash
+docker network create my-network
+```
+
+This creates a new isolated network you can use for your containers.
+
+#### ✅ Run a Container on a Network
+
+```bash
+docker run -it --name app1 --network my-network ubuntu
+```
+
+#### ✅ Connect an Existing Container to a Network
+
+```bash
+docker network connect my-network app1
+```
+
+#### ✅ Disconnect a Container
+
+```bash
+docker network disconnect my-network app1
+```
+
+#### ✅ Inspect a Network
+
+```bash
+docker network inspect my-network
+```
+
+Shows details like connected containers, IP addresses, etc.
+
+---
+
+### 📡 Why Custom Networks?
+
+- Containers on the **same custom network** can talk to each other using their **container names** as hostnames.
+- Good for **microservices**, **multi-container setups**, and **Docker Compose**.
+
+---
+
+### 📁 Example Use Case
+
+You run a backend and a database:
+
+```bash
+docker network create my-app-net
+
+docker run -d --name db --network my-app-net mongo
+docker run -it --name api --network my-app-net node
+docker run -d -p27017:27017 --name mongodb --network mongo-network -e MONGO_INITDB_ROOT_USERNAME=your-username -e MONGO_INITDB_ROOT_PASSWORD=yourpassword mongo # settingup the mongo
+docker run --network mongo-network --name mongo-express -e ME_CONFIG_MONGODB_ADMINPASSWORD=admin-pass -e ME_ADMINUSERNAME=adminusername -e ME_CONFIG_MONGODB_URL="mongodb://admin:qwerty@mongo:27017" -p 8081:8081 mongo-express
+```
+
+Now your Node app can connect to MongoDB via hostname `db`.
+
+---
+
+> 🚀 Tip: Docker Compose automatically creates a custom network for all services, so they can talk to each other without extra config.
