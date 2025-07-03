@@ -251,3 +251,11 @@ Or for detailed layer info (requires installing Dive):
 ```bash
 dive <image_name>
 ```
+
+## Troubleshoot Commands
+
+```bash
+docker log container_id
+docker exec -it container_id /bin/bash # Only works with the running container
+docker exec -it container_id /bin/sh
+```
