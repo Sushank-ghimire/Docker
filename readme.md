@@ -262,7 +262,7 @@ Absolutely! Here's a beginner-friendly, clear, and useful **Networks** section f
 
 ---
 
-## 🌐 Networks
+## Networks
 
 Docker uses networks to allow containers to communicate with each other and with the outside world. By default, Docker creates a few networks for you, but you can create your own for more control.
 
