@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // Modern JS version
+    "module": "commonjs", // Node.js ke liye module system
+    "outDir": "./dist", // Compiled JS files yahan jaayengi
+    "rootDir": "./app", // Source files yahan se lenge
+    "strict": true, // Strict type checking
+    "esModuleInterop": true, // Interoperability with CommonJS
+    "skipLibCheck": true, // Faster compilation
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["app/**/*"], // Src folder ke andar sab include karo
+  "exclude": ["node_modules"] // node_modules ko ignore karo
+}
